@@ -7,9 +7,9 @@ import Results from './componentes/results'
 
 function App() {
 
-  const [user, setUser] = useState(null)
-  const [starred, setStarred] = useState([]);
-  const [repos, setRepos] = useState([]);
+  const [user, setUser] = useState(null),
+    [starred, setStarred] = useState([]),
+    [repos, setRepos] = useState([]);
 
   return (
     <div className="App">

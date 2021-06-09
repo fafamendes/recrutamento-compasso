@@ -3,8 +3,8 @@ import { Container, Col, Row } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 
 function getUserInfo(props) {
+  /* Método resposável por receber os resultados da requisição e passando as funções de callback do componente pai*/
   let { setUserCallback, setStarredCallback, setReposCallback } = props;
-  console.log(props)
   let username = document.getElementById('username').value;
   let params = { method: 'GET' };
 
@@ -14,8 +14,7 @@ function getUserInfo(props) {
 }
 
 function doFetch(url, params, callback) {
-  let responseJson;
-
+/* Método responsável por realizar requisições e definir o estado do componente pai */
   fetch(url, params)
     .then(function (response) {
       if (response.ok) {
@@ -25,14 +24,13 @@ function doFetch(url, params, callback) {
 
           });
       } else {
-        console.log('Falha de internet');
+        console.log('Possível erro de internet');
       }
     })
     .catch(function (error) {
       console.log('Erro de operação: ' + error.message);
     });
 }
-
 
 function Search(props) {
 

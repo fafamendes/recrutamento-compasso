@@ -1,7 +1,7 @@
 # Recrutamento Compasso
 
-### Instruções
+## Instruções
 
-git clone https://github.com/fafamendes/recrutamento-compasso
-npm i
-npm start
+### git clone https://github.com/fafamendes/recrutamento-compasso
+### npm i
+### npm start

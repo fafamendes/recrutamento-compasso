@@ -14,7 +14,7 @@ function getUserInfo(props) {
 }
 
 function doFetch(url, params, callback) {
-/* Método responsável por realizar requisições e definir o estado do componente pai */
+  /* Método responsável por realizar requisições e definir o estado do componente pai */
   fetch(url, params)
     .then(function (response) {
       if (response.ok) {
@@ -39,7 +39,7 @@ function Search(props) {
         <Row>
           <Col lg="10">
             <FormGroup controlId="username">
-              <FormControl onKeyPress={(ev)=>{console.log(ev)}} type="text" placeholder="Nome de usuário" />
+              <FormControl type="text" placeholder="Nome de usuário" />
             </FormGroup>
           </Col>
           <Col lg="2">

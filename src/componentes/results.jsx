@@ -28,8 +28,8 @@ function Results(props) {
           <img className="c-results__avatar" src={user && user.avatar_url} alt="Avatar" />
           <div className="c-results__resume">
             <h1 className="c-results__resume__name">{user && user.name}</h1>
-            <div onClick={toggleDetails} className="c-results__resume__starred bi bi-star"> {starred.length} Favoritos</div>
-            <div onClick={toggleDetails} className="c-results__resume__repos bi bi-list"> {repos.length} Repositórios</div>
+            <div onClick={toggleDetails} className="c-results__resume__starred bi bi-star"> {starred && starred.length} Favoritos</div>
+            <div onClick={toggleDetails} className="c-results__resume__repos bi bi-list"> {repos && repos.length} Repositórios</div>
 
           </div>
         </div>

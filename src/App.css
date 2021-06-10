@@ -1,4 +1,53 @@
+/*App*/
 .App {
-  
+  display: table;
+  min-width: 35vw;
+  text-align: center; 
+}
+
+/*search*/
+
+/*results*/
+.c-results {
+  padding: 35px;
+  margin-top: 50px;
+  background-color: rgb(246, 251, 255);
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 1px 4px 10px);
+}
+
+.c-results > div:first-child {
+  display: flex;
+}
+
+.c-results__avatar {
+  display: table;
+  float: left;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.c-results__resume  {
+  margin-left: 15px;
+}
+
+.c-results__resume__name  {
+  font-size: 18px;
+}
+
+.c-results__resume__starred, .c-results__resume__repos {
+  padding: 3px;
+  margin-left: 8px;
+  display: inline-block;
+}
+.c-results__resume__starred:hover, .c-results__resume__repos:hover{
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: aquamarine;
+}
+
+
+.c-results li {
+  list-style: none;
+  text-align: left;
 }
 

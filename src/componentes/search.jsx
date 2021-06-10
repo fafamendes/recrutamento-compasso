@@ -20,11 +20,10 @@ function doFetch(url, params, callback) {
       if (response.ok) {
         response.json()
           .then(function (myJson) {
-            callback(myJson)
-
+            callback(myJson);
           });
       } else {
-        console.log('Possível erro de internet');
+        callback(null);
       }
     })
     .catch(function (error) {
@@ -35,16 +34,15 @@ function doFetch(url, params, callback) {
 function Search(props) {
 
   return (
-    <Container fluid>
-      <h1>Recrutamento Compasso</h1>
+    <Container className="c-search" fluid>
       <Form >
         <Row>
-          <Col>
+          <Col lg="10">
             <FormGroup controlId="username">
-              <FormControl type="text" placeholder="Nome de usuário" />
+              <FormControl onKeyPress={(ev)=>{console.log(ev)}} type="text" placeholder="Nome de usuário" />
             </FormGroup>
           </Col>
-          <Col >
+          <Col lg="2">
             <Button onClick={() => { getUserInfo(props) }}>Buscar</Button>
           </Col>
         </Row>

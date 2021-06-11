@@ -26,30 +26,39 @@ function getToken(params) {
   }
   let body = JSON.stringify({
     client_id: clientId,
-    clientId_secret: clientSecret,
+    client_secret: clientSecret,
     code,
+    state: String(parseInt(Math.random()*1000000000000)),
+    redirect_uri: 'http://recrutamento.uol:3000/'
   });
 
   let fetchParams = {
     method: 'POST',
-    mode: 'cors', 
-    credentials: 'include',
+    mode: 'no-cors',
+    referrerPolicy: 'origin',
     headers,
     body,
-  }
-
+  };
+  console.log(body)
   fetch(tokenUrl, fetchParams)
-    .then(response => response.json())
-    .then(myJson => { console.log(myJson) })
+    .then(function (response) {
+      console.log(response)
+      if (response.ok) {
+        
+        response.json()
+          .then(function (myJson) {
+            console.log(myJson)
+          })
+      }
+    })
 }
 
 function App() {
   const clientId = 'dece2edcd9f7dca7de6a';
-  const clientSecret = '95224976e8e4c991d013050790784cc4fbaefb08';
+  const clientSecret = 'a715b14a4a31f6b7b4ede4827b4108534521eb74';
 
   const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}`,
     tokenUrl = 'https://github.com/login/oauth/access_token';
-
 
   const [user, setUser] = useState(null),
     [starred, setStarred] = useState([]),

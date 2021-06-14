@@ -6,7 +6,12 @@ function getUserInfo(props) {
   /* Método resposável por receber os resultados da requisição e passando as funções de callback do componente pai*/
   let { setUserCallback, setStarredCallback, setReposCallback } = props;
   let username = document.getElementById('username').value;
-  let params = { method: 'GET' };
+  let params = {
+    method: 'GET',
+    headers: {
+      'Authorization': 'token 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'
+    }
+  };
 
   doFetch(`https://api.github.com/users/${username}`, params, setUserCallback);
   doFetch(`https://api.github.com/users/${username}/repos`, params, setReposCallback);
@@ -23,12 +28,19 @@ function doFetch(url, params, callback) {
             callback(myJson);
           });
       } else {
-        callback(null);
+        callback({ err: 'Usuário não encontrado' });
       }
     })
     .catch(function (error) {
       console.log('Erro de operação: ' + error.message);
     });
+}
+
+function preventDefault(ev, props) {
+  if (ev.key === 'Enter') {
+    getUserInfo(props);
+    ev.preventDefault();
+  }
 }
 
 function Search(props) {
@@ -39,7 +51,7 @@ function Search(props) {
         <Row>
           <Col lg="10">
             <FormGroup controlId="username">
-              <FormControl type="text" placeholder="Nome de usuário" />
+              <FormControl onKeyDown={ev => { preventDefault(ev, props) }} type="text" placeholder="Nome de usuário" />
             </FormGroup>
           </Col>
           <Col lg="2">

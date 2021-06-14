@@ -1,8 +1,14 @@
+import { findByPlaceholderText } from '@testing-library/react';
 import { useState } from 'react'
+
+import Button from './button';
+
+//daasd
 
 function createElementList(data, className) {
   let elementList = []
-  if (data.length > 0) {
+  console.log(data)
+  if (data && data.length > 0) {
     data.map((data, idx) => {
       return elementList.push(<li className={className} key={idx}>
         <a target="blank" href={data.html_url}>{data.name}</a>
@@ -14,22 +20,34 @@ function createElementList(data, className) {
   }
 }
 
+function formatText(value, text) {
+  return `${(value && value.length) || 0}  ${text}`;
+}
+
 function Results(props) {
 
   let { user, starred, repos } = props;
   const [showStarred, setshowStarred] = useState(false),
     [showRepos, setShowRepos] = useState(false);
 
-  if (user) {
+  if (user && !user.err) {
+    console.log(starred)
     return (
-
       <div className="c-results">
         <div>
           <img className="c-results__avatar" src={user && user.avatar_url} alt="Avatar" />
           <div className="c-results__resume">
             <h1 className="c-results__resume__name">{user && user.name}</h1>
-            <div onClick={toggleDetails} className="c-results__resume__starred bi bi-star"> {starred && starred.length} Favoritos</div>
-            <div onClick={toggleDetails} className="c-results__resume__repos bi bi-list"> {repos && repos.length} Repositórios</div>
+            <Button
+              callback={toggleDetails}
+              className="c-results__resume__starred bi bi-star"
+              text={formatText(starred, 'Favoritos')}
+            />
+            <Button
+              callback={toggleDetails}
+              className="c-results__resume__repos bi bi-list"
+              text={formatText(repos, 'Repositórios')}
+            />
 
           </div>
         </div>
@@ -51,11 +69,17 @@ function Results(props) {
         </div>
       </div>
     );
+  } else if (user && user.err) {
+    return (
+      <div className="c-results-error">
+        {user.err}
+      </div>);
+
   } else {
     return (
       <div>
 
-      </div>);
+      </div>)
   }
 
 
@@ -69,7 +93,6 @@ function Results(props) {
     } else {
       setShowRepos(Boolean(showRepos ^ 1));
       showStarred && setshowStarred(false);
-      console.log(showRepos)
     }
   }
 
